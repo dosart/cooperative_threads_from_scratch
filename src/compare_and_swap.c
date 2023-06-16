@@ -1,7 +1,7 @@
-#include "compare_and_swap"
+#include "compare_and_swap.h"
 
 char compare_and_swap(int *ptr, int old, int new) {
-  unsigned char ret;
+  char ret;
 
   asm volatile("lock\n"
                "cmpxchgl %2, %1\n"

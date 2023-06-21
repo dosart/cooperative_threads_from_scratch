@@ -1,4 +1,5 @@
 SOURCES=$(shell find -name "*.c")
+BUILDS=$(shell find -name "*.o")
 
 CC=gcc
 
@@ -11,17 +12,17 @@ OUTPUT_DIR =./bin
 all: mkdir_build build
 
 build:
-	$(CC) $(CFLAGS) $(SOURCES) -o threads
+	$(CC) $(CFLAGS) $(SOURCES) -o $(OUTPUT_DIR)/threads
 
 mkdir_build:
 	$(shell [ ! -d  $(OUTPUT_DIR) ] && mkdir $(OUTPUT_DIR))
 
 clean:
-	rm $(shell find . -name "*.o")
+	find . -name "*.o" -type f -delete
 
 clean_all: 
 	@make clean
-	rm $(OUTPUT_DIR)/kernel
+	rm -r $(OUTPUT_DIR)
 
 run:
 	$(OUTPUT_DIR)/threads
